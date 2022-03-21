@@ -1,9 +1,8 @@
-const EXPENSES = [];
+const expenseService = require("../services/expenses/expense-service");
 
 class ExpenseController {
-
     getExpenses(req, res) {
-        res.render('expenses/expenses-list', { title: 'ExpenseListPage', expenses: EXPENSES });
+        res.render('expenses/expenses-list', { title: 'ExpenseListPage', expenses: expenseService.getExpenses() });
     }
 
     getCreateExpense(req, res) {
@@ -16,10 +15,7 @@ class ExpenseController {
             const expenseAmount = requestBody.amount;
             const expenseTitle = requestBody.title;
 
-            EXPENSES.push({
-                title: expenseTitle,
-                amount: expenseAmount
-            });
+            expenseService.createExpense(expenseTitle, expenseAmount);
         }
 
         res.render("expenses/create-expense");
