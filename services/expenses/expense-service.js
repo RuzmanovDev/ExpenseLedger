@@ -1,10 +1,18 @@
+const { Pool, Client } = require('pg')
+const { getClient } = require('../../data/get-client');
+
 class ExpenseService {
-    constructor(){
+    constructor() {
         this.expenses = [];
     }
 
-    getExpenses() {
-        return this.expenses;
+    async getExpenses() {
+        const client = await getClient();
+
+        const entries = await client.query('SELECT expense_id, title, description, amount FROM public.expenses;');
+        await client.end();
+
+        return entries.rows;
     }
 
     createExpense(title, amount) {

@@ -1,8 +1,9 @@
 const expenseService = require("../services/expenses/expense-service");
 
 class ExpenseController {
-    getExpenses(req, res) {
-        res.render('expenses/expenses-list', { title: 'ExpenseListPage', expenses: expenseService.getExpenses() });
+    async getExpenses(req, res) {
+        const expenses = await expenseService.getExpenses();
+        res.render('expenses/expenses-list', { title: 'ExpenseListPage', expenses: expenses });
     }
 
     getCreateExpense(req, res) {
