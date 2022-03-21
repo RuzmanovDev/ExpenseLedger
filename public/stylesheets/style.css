@@ -6,3 +6,17 @@ body {
 a {
   color: #00B7FF;
 }
+
+.navigation ul li {
+  list-style-type: none;
+  margin: 10px;
+  padding: 10px;
+  display: inline;
+  border: 1px solid;
+  border-color: #00B7FF;
+  border-radius: 5px;
+}
+
+.navigation a{
+  text-decoration: none;
+}
