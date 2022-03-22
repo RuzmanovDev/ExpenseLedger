@@ -1,4 +1,4 @@
-const expenseService = require("../services/expenses/expense-service");
+import { expenseService } from '../services/expenses/expense-service'
 
 class ExpenseController {
     async getExpenses(req, res) {
@@ -25,4 +25,4 @@ class ExpenseController {
 
 const expenseController = new ExpenseController();
 
-module.exports = expenseController;
+export { expenseController };

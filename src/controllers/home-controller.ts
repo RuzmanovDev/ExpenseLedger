@@ -4,7 +4,6 @@ class HomeController {
         res.render('index', { title: 'Express' });
     }
 }
-
 const homeController = new HomeController();
 
-module.exports = homeController;
+export { homeController };

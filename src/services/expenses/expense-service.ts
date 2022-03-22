@@ -1,12 +1,7 @@
-const { Pool, Client } = require('pg')
 const { getClient } = require('../../data/get-client');
 
-class ExpenseService {
-    constructor() {
-        this.expenses = [];
-    }
-
-    async getExpenses() {
+export class ExpenseService {
+    public async getExpenses() {
         const client = await getClient();
 
         const entries = await client.query('SELECT expense_id, title, description, amount FROM public.expenses;');
@@ -15,7 +10,7 @@ class ExpenseService {
         return entries.rows;
     }
 
-    createExpense(title, amount) {
+    public createExpense(title, amount) {
         if (!title) {
             throw "The title is not valid";
         }
@@ -25,11 +20,7 @@ class ExpenseService {
         }
 
         const expense = { title, amount }
-
-        this.expenses.push(expense);
     }
 }
 
-const expenseService = new ExpenseService();
-
-module.exports = expenseService;
+export const expenseService = new ExpenseService();
